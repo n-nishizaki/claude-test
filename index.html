@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Overview - 今日の一日を俯瞰する</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1 class="logo">Daily Overview</h1>
+        <p class="subtitle" id="greeting"></p>
+      </div>
+      <div class="header-right">
+        <div class="date-display" id="dateDisplay"></div>
+        <div class="clock" id="clock"></div>
+      </div>
+    </header>
+
+    <!-- Progress Bar for the Day -->
+    <section class="day-progress-section">
+      <div class="day-progress-label">
+        <span>今日の進行度</span>
+        <span id="dayPercent">0%</span>
+      </div>
+      <div class="day-progress-bar">
+        <div class="day-progress-fill" id="dayProgressFill"></div>
+        <div class="day-progress-sun" id="dayProgressSun">&#9728;</div>
+      </div>
+      <div class="day-progress-times">
+        <span>6:00</span>
+        <span>12:00</span>
+        <span>18:00</span>
+        <span>24:00</span>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <main class="dashboard">
+      <!-- Weather Card -->
+      <section class="card weather-card">
+        <h2 class="card-title"><span class="icon">&#127780;</span> 天気</h2>
+        <div class="weather-main">
+          <div class="weather-icon" id="weatherIcon"></div>
+          <div class="weather-temp" id="weatherTemp"></div>
+        </div>
+        <div class="weather-details">
+          <div class="weather-detail">
+            <span class="detail-label">湿度</span>
+            <span class="detail-value" id="humidity"></span>
+          </div>
+          <div class="weather-detail">
+            <span class="detail-label">風速</span>
+            <span class="detail-value" id="wind"></span>
+          </div>
+          <div class="weather-detail">
+            <span class="detail-label">体感</span>
+            <span class="detail-value" id="feelsLike"></span>
+          </div>
+        </div>
+        <div class="hourly-forecast" id="hourlyForecast"></div>
+      </section>
+
+      <!-- Timeline Card -->
+      <section class="card timeline-card">
+        <h2 class="card-title"><span class="icon">&#128197;</span> 今日のタイムライン</h2>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <!-- Mood Tracker Card -->
+      <section class="card mood-card">
+        <h2 class="card-title"><span class="icon">&#128522;</span> 気分トラッカー</h2>
+        <div class="mood-selector" id="moodSelector">
+          <button class="mood-btn" data-mood="great" data-emoji="&#128525;">&#128525;</button>
+          <button class="mood-btn" data-mood="good" data-emoji="&#128522;">&#128522;</button>
+          <button class="mood-btn" data-mood="okay" data-emoji="&#128528;">&#128528;</button>
+          <button class="mood-btn" data-mood="bad" data-emoji="&#128543;">&#128543;</button>
+          <button class="mood-btn" data-mood="terrible" data-emoji="&#128557;">&#128557;</button>
+        </div>
+        <div class="mood-history">
+          <h3>今週の気分</h3>
+          <div class="mood-week" id="moodWeek"></div>
+        </div>
+      </section>
+
+      <!-- Habit Tracker Card -->
+      <section class="card habit-card">
+        <h2 class="card-title"><span class="icon">&#9989;</span> 習慣トラッカー</h2>
+        <div class="habits" id="habits"></div>
+        <button class="add-habit-btn" id="addHabitBtn">+ 新しい習慣を追加</button>
+      </section>
+
+      <!-- Activity Chart Card -->
+      <section class="card activity-card">
+        <h2 class="card-title"><span class="icon">&#128200;</span> 今週のアクティビティ</h2>
+        <div class="activity-chart" id="activityChart"></div>
+        <div class="activity-legend" id="activityLegend"></div>
+      </section>
+
+      <!-- Quick Notes Card -->
+      <section class="card notes-card">
+        <h2 class="card-title"><span class="icon">&#128221;</span> クイックメモ</h2>
+        <textarea class="notes-input" id="notesInput" placeholder="今日の思いつきやメモをここに..."></textarea>
+        <div class="saved-notes" id="savedNotes"></div>
+      </section>
+
+      <!-- Focus Timer Card -->
+      <section class="card timer-card">
+        <h2 class="card-title"><span class="icon">&#9201;</span> フォーカスタイマー</h2>
+        <div class="timer-display" id="timerDisplay">25:00</div>
+        <div class="timer-ring">
+          <svg viewBox="0 0 120 120" class="timer-svg">
+            <circle cx="60" cy="60" r="54" class="timer-bg-circle"/>
+            <circle cx="60" cy="60" r="54" class="timer-progress-circle" id="timerCircle"/>
+          </svg>
+        </div>
+        <div class="timer-controls">
+          <button class="timer-btn" id="timerStart">&#9654; 開始</button>
+          <button class="timer-btn" id="timerReset">&#8635; リセット</button>
+        </div>
+        <div class="timer-stats">
+          <span>今日の集中: <strong id="focusCount">0</strong> セッション</span>
+        </div>
+      </section>
+
+      <!-- Daily Quote Card -->
+      <section class="card quote-card">
+        <h2 class="card-title"><span class="icon">&#128172;</span> 今日の言葉</h2>
+        <blockquote class="quote-text" id="quoteText"></blockquote>
+        <p class="quote-author" id="quoteAuthor"></p>
+        <button class="quote-refresh" id="quoteRefresh">&#8635; 別の言葉</button>
+      </section>
+    </main>
+
+    <!-- Floating particles background -->
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
